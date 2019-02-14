@@ -3,7 +3,7 @@
 class Sandbox : public Defiant::Application {
 public:
 	Sandbox() {
-		
+		DE_TRACE("Created Sandbox App");
 	}
 
 	~Sandbox() {

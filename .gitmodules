@@ -1,0 +1,3 @@
+[submodule "DefiantEngine/vendor/spdlog"]
+	path = DefiantEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog
