@@ -4,6 +4,9 @@
     <Filter Include="Defiant">
       <UniqueIdentifier>{A0CA4169-0CAA-C004-15C2-4BDB81202766}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Defiant\Events">
+      <UniqueIdentifier>{8442B5BC-7010-A9C2-59A4-19E945118527}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Defiant.h" />
@@ -16,9 +19,13 @@
     <ClInclude Include="src\Defiant\EntryPoint.h">
       <Filter>Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Events\Event.h">
+      <Filter>Defiant\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Defiant\Log.h">
       <Filter>Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Events\KeyEvent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
