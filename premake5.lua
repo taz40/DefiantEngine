@@ -14,16 +14,16 @@ project "DefiantEngine"
 	kind "SharedLib"
 	language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/%{prg.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prg.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files{
-		"%{prg.name}/src/**.h",
-		"%{prg.name}/src/**.cpp"
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
 	}
 
-	include {
-		"%{prg.name}/vendor/spdlog/include"
+	includedirs {
+		"%{prj.name}/vendor/spdlog/include"
 	}
 
 	filter "system:windows" 
@@ -58,17 +58,21 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 
-	targetdir ("bin/" .. outputdir .. "/%{prg.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prg.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files{
-		"%{prg.name}/src/**.h",
-		"%{prg.name}/src/**.cpp"
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp"
 	}
 
-	include {
-		"%{prg.name}/vendor/spdlog/include",
+	includedirs {
+		"DefiantEngine/vendor/spdlog/include",
 		"DefiantEngine/src"
+	}
+	
+	links {
+		"DefiantEngine"
 	}
 
 	filter "system:windows" 
@@ -91,3 +95,5 @@ project "Sandbox"
 	filter "configurations:Dist"
 		defines "DE_DIST"
 		optimize "On"
+		
+		
