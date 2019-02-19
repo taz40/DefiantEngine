@@ -7,8 +7,14 @@
     <Filter Include="Defiant\Events">
       <UniqueIdentifier>{8442B5BC-7010-A9C2-59A4-19E945118527}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Defiant\ImGui">
+      <UniqueIdentifier>{CAB75F99-3678-DBCF-FFB2-244D6B3220AC}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Defiant\Events\MouseEvent.h">
       <Filter>Defiant\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\ImGui\ImGuiLayer.h">
+      <Filter>Defiant\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Defiant\Layer.h">
       <Filter>Defiant</Filter>
     </ClInclude>
@@ -49,16 +58,20 @@
     <ClInclude Include="src\Defiant\Window.h">
       <Filter>Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\depch.h" />
-    <ClInclude Include="src\Defiant\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
       <Filter>Defiant</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\ImGui\ImGuiLayer.cpp">
+      <Filter>Defiant\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Layer.cpp">
       <Filter>Defiant</Filter>
@@ -69,11 +82,12 @@
     <ClCompile Include="src\Defiant\Log.cpp">
       <Filter>Defiant</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\depch.cpp" />
-    <ClCompile Include="src\Defiant\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>

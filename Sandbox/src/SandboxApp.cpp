@@ -20,6 +20,7 @@ public:
 	Sandbox() {
 		DE_TRACE("Created Sandbox App");
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Defiant::ImGuiLayer());
 	}
 
 	~Sandbox() {

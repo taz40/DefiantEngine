@@ -4,7 +4,7 @@
 
 namespace Defiant {
 	
-	class ImGuiLayer : public Layer {
+	class DE_API ImGuiLayer : public Layer {
 	public:
 		ImGuiLayer();
 		~ImGuiLayer();
@@ -15,7 +15,7 @@ namespace Defiant {
 		virtual void OnEvent(Event& event);
 
 	private:
-
+		float m_Time = 0;
 	};
 
 }
