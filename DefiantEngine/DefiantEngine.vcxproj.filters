@@ -34,6 +34,9 @@
     <ClInclude Include="src\Defiant\Log.h">
       <Filter>Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\depch.h" />
+    <ClInclude Include="src\Defiant\Window.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
@@ -42,5 +45,7 @@
     <ClCompile Include="src\Defiant\Log.cpp">
       <Filter>Defiant</Filter>
     </ClCompile>
+    <ClCompile Include="src\depch.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>

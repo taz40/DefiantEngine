@@ -9,6 +9,11 @@ workspace "DefiantEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "DefiantEngine/vendor/GLFW/include"
+
+include "DefiantEngine/vendor/GLFW"
+
 project "DefiantEngine"
 	location "DefiantEngine"
 	kind "SharedLib"
@@ -17,6 +22,9 @@ project "DefiantEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "depch.h"
+	pchsource "DefiantEngine/src/depch.cpp"
+
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
@@ -24,7 +32,13 @@ project "DefiantEngine"
 
 	includedirs {
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows" 

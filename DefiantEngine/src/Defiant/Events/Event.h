@@ -1,9 +1,7 @@
 #pragma once
 
+#include "depch.h"
 #include "Defiant/Core.h"
-
-#include <string>
-#include <functional>
 
 namespace Defiant {
 	enum class EventType {

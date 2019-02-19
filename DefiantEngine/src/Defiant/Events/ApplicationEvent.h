@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Defiant {
 
 	class DE_API WindowResizeEvent : public Event {

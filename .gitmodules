@@ -1,3 +1,6 @@
 [submodule "DefiantEngine/vendor/spdlog"]
 	path = DefiantEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "DefiantEngine/vendor/GLFW"]
+	path = DefiantEngine/vendor/GLFW
+	url = https://github.com/taz40/glfw
