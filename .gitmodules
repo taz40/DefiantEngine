@@ -4,3 +4,6 @@
 [submodule "DefiantEngine/vendor/GLFW"]
 	path = DefiantEngine/vendor/GLFW
 	url = https://github.com/taz40/glfw
+[submodule "DefiantEngine/vendor/imgui"]
+	path = DefiantEngine/vendor/imgui
+	url = https://github.com/taz40/imgui

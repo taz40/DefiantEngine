@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>depch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DE_BUILD_DLL;DE_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -103,7 +103,7 @@
       <PrecompiledHeaderFile>depch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DE_BUILD_DLL;DE_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -130,7 +130,7 @@
       <PrecompiledHeaderFile>depch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>DE_BUILD_DLL;DE_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;DE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\glad\include;vendor\imgui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -160,18 +160,22 @@
     <ClInclude Include="src\Defiant\Events\Event.h" />
     <ClInclude Include="src\Defiant\Events\KeyEvent.h" />
     <ClInclude Include="src\Defiant\Events\MouseEvent.h" />
+    <ClInclude Include="src\Defiant\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Defiant\Layer.h" />
     <ClInclude Include="src\Defiant\LayerStack.h" />
     <ClInclude Include="src\Defiant\Log.h" />
     <ClInclude Include="src\Defiant\Window.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\depch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp" />
+    <ClCompile Include="src\Defiant\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Defiant\Layer.cpp" />
     <ClCompile Include="src\Defiant\LayerStack.cpp" />
     <ClCompile Include="src\Defiant\Log.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\depch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -183,6 +187,9 @@
     </ProjectReference>
     <ProjectReference Include="vendor\glad\glad.vcxproj">
       <Project>{DD62977C-C999-980D-7286-7E105E9C140F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="vendor\imgui\ImGui.vcxproj">
+      <Project>{C0FF640D-2C14-8DBE-F595-301E616989EF}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
