@@ -1,5 +1,6 @@
 workspace "DefiantEngine"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations{
 		"Debug",
@@ -14,7 +15,6 @@ IncludeDir["GLFW"] = "DefiantEngine/vendor/GLFW/include"
 IncludeDir["glad"] = "DefiantEngine/vendor/glad/include"
 IncludeDir["imgui"] = "DefiantEngine/vendor/imgui"
 
-startproject "Sandbox"
 
 include "DefiantEngine/vendor/GLFW"
 include "DefiantEngine/vendor/glad"
@@ -53,7 +53,7 @@ project "DefiantEngine"
 
 	filter "system:windows" 
 		cppdialect "c++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines {
@@ -68,17 +68,17 @@ project "DefiantEngine"
 
 	filter "configurations:Debug"
 		defines "DE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "DE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "DE_DIST"
-		buildoptions "MD"
+		runtime "Release"
 		optimize "On"
 
 
@@ -106,7 +106,7 @@ project "Sandbox"
 
 	filter "system:windows" 
 		cppdialect "c++17"
-		staticruntime "On"
+		staticruntime "Off"
 		systemversion "latest"
 
 		defines {
@@ -115,17 +115,17 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "DE_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "DE_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "DE_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 		
