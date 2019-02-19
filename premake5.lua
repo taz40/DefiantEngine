@@ -11,8 +11,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "DefiantEngine/vendor/GLFW/include"
+IncludeDir["glad"] = "DefiantEngine/vendor/glad/include"
 
 include "DefiantEngine/vendor/GLFW"
+include "DefiantEngine/vendor/glad"
 
 project "DefiantEngine"
 	location "DefiantEngine"
@@ -33,11 +35,13 @@ project "DefiantEngine"
 	includedirs {
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.glad}"
 	}
 
 	links{
 		"GLFW",
+		"glad",
 		"opengl32.lib"
 	}
 
@@ -48,7 +52,8 @@ project "DefiantEngine"
 
 		defines {
 			"DE_BUILD_DLL",
-			"DE_PLATFORM_WINDOWS"
+			"DE_PLATFORM_WINDOWS",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands {

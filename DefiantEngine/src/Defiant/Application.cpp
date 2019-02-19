@@ -5,7 +5,7 @@
 #include "Defiant/Log.h"
 
 //WARNING! NOT PERMANATE
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace Defiant {
 
