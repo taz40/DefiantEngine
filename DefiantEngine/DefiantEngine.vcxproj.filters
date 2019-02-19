@@ -7,6 +7,12 @@
     <Filter Include="Defiant\Events">
       <UniqueIdentifier>{8442B5BC-7010-A9C2-59A4-19E945118527}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Defiant.h" />
@@ -31,21 +37,39 @@
     <ClInclude Include="src\Defiant\Events\MouseEvent.h">
       <Filter>Defiant\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Layer.h">
+      <Filter>Defiant</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\LayerStack.h">
+      <Filter>Defiant</Filter>
+    </ClInclude>
     <ClInclude Include="src\Defiant\Log.h">
       <Filter>Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Window.h">
+      <Filter>Defiant</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\depch.h" />
-    <ClInclude Include="src\Defiant\Window.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
       <Filter>Defiant</Filter>
     </ClCompile>
+    <ClCompile Include="src\Defiant\Layer.cpp">
+      <Filter>Defiant</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\LayerStack.cpp">
+      <Filter>Defiant</Filter>
+    </ClCompile>
     <ClCompile Include="src\Defiant\Log.cpp">
       <Filter>Defiant</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\depch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
 </Project>
