@@ -3,6 +3,7 @@
 #include "Defiant/Layer.h"
 #include "Defiant/Events/MouseEvent.h"
 #include "Defiant/Events/KeyEvent.h"
+#include "Defiant/Events/ApplicationEvent.h"
 
 namespace Defiant {
 	
@@ -25,6 +26,9 @@ namespace Defiant {
 
 		bool OnKeyPressedEvent(KeyPressedEvent& e);
 		bool OnKeyReleasedEvent(KeyReleasedEvent& e);
+		bool OnKeyTypedEvent(KeyTypedEvent& e);
+
+		bool OnWindowResizeEvent(WindowResizeEvent& e);
 
 		float m_Time = 0;
 	};

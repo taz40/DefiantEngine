@@ -14,6 +14,8 @@ IncludeDir["GLFW"] = "DefiantEngine/vendor/GLFW/include"
 IncludeDir["glad"] = "DefiantEngine/vendor/glad/include"
 IncludeDir["imgui"] = "DefiantEngine/vendor/imgui"
 
+startproject "Sandbox"
+
 include "DefiantEngine/vendor/GLFW"
 include "DefiantEngine/vendor/glad"
 include "DefiantEngine/vendor/imgui"
