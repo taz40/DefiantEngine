@@ -159,9 +159,11 @@
     <ClInclude Include="src\Defiant\Events\MouseEvent.h" />
     <ClInclude Include="src\Defiant\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Defiant\Input.h" />
+    <ClInclude Include="src\Defiant\KeyCodes.h" />
     <ClInclude Include="src\Defiant\Layer.h" />
     <ClInclude Include="src\Defiant\LayerStack.h" />
     <ClInclude Include="src\Defiant\Log.h" />
+    <ClInclude Include="src\Defiant\MouseButtonCodes.h" />
     <ClInclude Include="src\Defiant\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
