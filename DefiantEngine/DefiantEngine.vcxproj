@@ -158,11 +158,13 @@
     <ClInclude Include="src\Defiant\Events\KeyEvent.h" />
     <ClInclude Include="src\Defiant\Events\MouseEvent.h" />
     <ClInclude Include="src\Defiant\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Defiant\Input.h" />
     <ClInclude Include="src\Defiant\Layer.h" />
     <ClInclude Include="src\Defiant\LayerStack.h" />
     <ClInclude Include="src\Defiant\Log.h" />
     <ClInclude Include="src\Defiant\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\depch.h" />
   </ItemGroup>
@@ -173,6 +175,7 @@
     <ClCompile Include="src\Defiant\LayerStack.cpp" />
     <ClCompile Include="src\Defiant\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\depch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

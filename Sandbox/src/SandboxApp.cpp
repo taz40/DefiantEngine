@@ -11,7 +11,7 @@ public:
 	}
 
 	void OnEvent(Defiant::Event& event) override {
-		DE_TRACE("{0}", event)
+		//DE_TRACE("{0}", event)
 	}
 };
 
