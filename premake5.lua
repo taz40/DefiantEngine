@@ -14,6 +14,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "DefiantEngine/vendor/GLFW/include"
 IncludeDir["glad"] = "DefiantEngine/vendor/glad/include"
 IncludeDir["imgui"] = "DefiantEngine/vendor/imgui"
+IncludeDir["glm"] = "DefiantEngine/vendor/glm"
 
 
 include "DefiantEngine/vendor/GLFW"
@@ -33,7 +34,9 @@ project "DefiantEngine"
 
 	files{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs {
@@ -41,7 +44,8 @@ project "DefiantEngine"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glad}",
-		"%{IncludeDir.imgui}"
+		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links{
@@ -97,7 +101,8 @@ project "Sandbox"
 
 	includedirs {
 		"DefiantEngine/vendor/spdlog/include",
-		"DefiantEngine/src"
+		"DefiantEngine/src",
+		"%{IncludeDir.glm}"
 	}
 	
 	links {
