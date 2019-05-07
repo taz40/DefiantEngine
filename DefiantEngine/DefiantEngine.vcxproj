@@ -165,7 +165,6 @@
     <ClInclude Include="src\Defiant\Log.h" />
     <ClInclude Include="src\Defiant\MouseButtonCodes.h" />
     <ClInclude Include="src\Defiant\Window.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\depch.h" />
@@ -537,10 +536,10 @@
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp" />
     <ClCompile Include="src\Defiant\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Defiant\ImGui\imguiBuild.cpp" />
     <ClCompile Include="src\Defiant\Layer.cpp" />
     <ClCompile Include="src\Defiant\LayerStack.cpp" />
     <ClCompile Include="src\Defiant\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\depch.cpp">

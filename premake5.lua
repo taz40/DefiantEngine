@@ -102,6 +102,7 @@ project "Sandbox"
 	includedirs {
 		"DefiantEngine/vendor/spdlog/include",
 		"DefiantEngine/src",
+		"DefiantEngine/vendor",
 		"%{IncludeDir.glm}"
 	}
 	

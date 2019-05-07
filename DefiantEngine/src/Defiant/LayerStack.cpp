@@ -4,7 +4,6 @@
 namespace Defiant {
 
 	LayerStack::LayerStack() {
-		m_LayerInsert = m_Layers.begin();
 	}
 
 	LayerStack::~LayerStack() {
@@ -13,7 +12,8 @@ namespace Defiant {
 	}
 
 	void LayerStack::PushLayer(Layer* layer) {
-		m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
+		m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
+		m_LayerInsertIndex++;
 		layer->OnAttach();
 	}
 
@@ -27,7 +27,7 @@ namespace Defiant {
 		if (it != m_Layers.end()) {
 			m_Layers.erase(it);
 			layer->OnDetach();
-			m_LayerInsert--;
+			m_LayerInsertIndex--;
 		}
 	}
 

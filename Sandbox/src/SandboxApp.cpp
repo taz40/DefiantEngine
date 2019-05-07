@@ -1,5 +1,7 @@
 #include <Defiant.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Defiant::Layer {
 public:
 	ExampleLayer()
@@ -8,6 +10,12 @@ public:
 
 	void OnUpdate() override {
 
+	}
+
+	void OnImGuiRender() override {
+		ImGui::Begin("Test");
+		ImGui::Text("Hello, World!");
+		ImGui::End();
 	}
 
 	void OnEvent(Defiant::Event& event) override {
@@ -20,7 +28,6 @@ public:
 	Sandbox() {
 		DE_TRACE("Created Sandbox App");
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Defiant::ImGuiLayer());
 	}
 
 	~Sandbox() {
