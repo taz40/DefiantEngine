@@ -23,11 +23,17 @@ include "DefiantEngine/vendor/imgui"
 
 project "DefiantEngine"
 	location "DefiantEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	
+	defines {
+		"_CRT_SECURE_NO_WARNINGS"
+	}
 
 	pchheader "depch.h"
 	pchsource "DefiantEngine/src/depch.cpp"
@@ -56,8 +62,6 @@ project "DefiantEngine"
 	}
 
 	filter "system:windows" 
-		cppdialect "c++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines {
@@ -73,23 +77,25 @@ project "DefiantEngine"
 	filter "configurations:Debug"
 		defines "DE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "DE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "DE_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -111,8 +117,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows" 
-		cppdialect "c++17"
-		staticruntime "Off"
 		systemversion "latest"
 
 		defines {
@@ -122,16 +126,16 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "DE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "DE_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "DE_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 		

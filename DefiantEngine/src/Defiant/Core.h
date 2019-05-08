@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef DE_PLATFORM_WINDOWS
+#ifdef DE_DYNAMIC_LINK
 	#ifdef DE_BUILD_DLL
 		#define DE_API __declspec(dllexport)
 	#else
 		#define DE_API __declspec(dllimport)
 	#endif
+#else
+	#define DE_API
+#endif
 #else
 	#error HAZEL ONLY SUPPORTS WINDOWS!
 #endif
