@@ -4,6 +4,8 @@
 
 #include "GLFW/glfw3.h"
 
+#include "Defiant/Renderer/GraphicsContext.h"
+
 namespace Defiant {
 
 	class WindowsWindow : public Window {
@@ -27,6 +29,7 @@ namespace Defiant {
 		virtual void Shutdown();
 
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData {
 			std::string Title;
