@@ -7,6 +7,9 @@
 
 #include "Platform/OpenGL/OpenGLRenderer.h"
 
+//WARNING TEMPORARY
+#include <glad/glad.h>
+
 namespace Defiant {
 
 	Application* Application::s_Instance = nullptr;
@@ -55,6 +58,23 @@ namespace Defiant {
 	void Application::Run() {
 		while (m_Running) {
 			renderer->clear();
+
+			unsigned int vbo;
+			unsigned int vao;
+			unsigned int ibo;
+			glGenVertexArrays(1, &vao);
+			glBindVertexArray(vao);
+			glEnableVertexAttribArray(0);
+			glGenBuffers(1, &vbo);
+			glGenBuffers(1, &ibo);
+			glBindBuffer(GL_ARRAY_BUFFER, vbo);
+			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+			float* vertecies = new float[12] {-.5f, .5f, 0, .5f, .5f, 0, -.5f, -.5f, 0, .5f, -.5f, 0};
+			glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(float), vertecies, GL_STATIC_DRAW);
+			unsigned int* indecies = new unsigned int[6] {0, 1, 2, 1, 3, 2};
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indecies, GL_STATIC_DRAW);
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
