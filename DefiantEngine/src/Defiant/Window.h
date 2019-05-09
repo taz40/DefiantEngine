@@ -4,6 +4,7 @@
 
 #include "Defiant/Core.h"
 #include "Defiant/Events/Event.h"
+#include "Defiant/Renderer/GraphicsContext.h"
 
 namespace Defiant {
 	struct WindowProps {
@@ -33,5 +34,8 @@ namespace Defiant {
 		virtual void* GetNativeWindow() const = 0;
 
 		static Window* Create(const WindowProps& props = WindowProps());
+
+	protected:
+		GraphicsContext* m_Context;
 	};
 }

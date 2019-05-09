@@ -7,6 +7,7 @@
 #include "Events/Event.h"
 #include "Events/ApplicationEvent.h"
 #include "ImGui/ImGuiLayer.h"
+#include "Defiant/Renderer/Renderer.h"
 
 namespace Defiant {
 
@@ -26,6 +27,8 @@ namespace Defiant {
 		static inline Application& Get() { return *s_Instance; }
 
 		inline Window& GetWindow() { return *m_Window; }
+
+		Renderer* renderer;
 
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);

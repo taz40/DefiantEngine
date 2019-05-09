@@ -5,8 +5,7 @@
 #include "Defiant/Log.h"
 #include "Input.h"
 
-//WARNING! NOT PERMANATE
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLRenderer.h"
 
 namespace Defiant {
 
@@ -22,6 +21,9 @@ namespace Defiant {
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
+
+		//WARNING! TEMPORARY CODE
+		renderer = new OpenGLRenderer();
 	}
 
 	Application::~Application()
@@ -52,8 +54,7 @@ namespace Defiant {
 
 	void Application::Run() {
 		while (m_Running) {
-			glClearColor(1, 0, 1, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			renderer->clear();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
