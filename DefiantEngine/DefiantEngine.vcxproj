@@ -156,10 +156,12 @@
     <ClInclude Include="src\Defiant\Log.h" />
     <ClInclude Include="src\Defiant\MouseButtonCodes.h" />
     <ClInclude Include="src\Defiant\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Defiant\Renderer\IndexBuffer.h" />
     <ClInclude Include="src\Defiant\Renderer\Renderer.h" />
     <ClInclude Include="src\Defiant\Renderer\VertexBuffer.h" />
     <ClInclude Include="src\Defiant\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLIndexBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRenderer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexBuffer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
@@ -538,6 +540,7 @@
     <ClCompile Include="src\Defiant\LayerStack.cpp" />
     <ClCompile Include="src\Defiant\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLIndexBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexBuffer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />

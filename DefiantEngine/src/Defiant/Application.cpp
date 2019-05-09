@@ -10,6 +10,7 @@
 //WARNING TEMPORARY
 #include <glad/glad.h>
 #include "Platform/OpenGL/OpenGLVertexBuffer.h"
+#include "Platform/OpenGL/OpenGLIndexBuffer.h"
 
 namespace Defiant {
 
@@ -61,19 +62,18 @@ namespace Defiant {
 			renderer->clear();
 
 			unsigned int vao;
-			unsigned int ibo;
 			glGenVertexArrays(1, &vao);
 			glBindVertexArray(vao);
 			glEnableVertexAttribArray(0);
-			glGenBuffers(1, &ibo);
 			VertexBuffer* vbo = new OpenGLVertexBuffer();
 			float* data = new float[12] { -.5f, .5f, 0, .5f, .5f, 0, -.5f, -.5f, 0, .5f, -.5f, 0 };
 			vbo->createBuffer(data, 12);
 			vbo->Bind();
 			glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
 			unsigned int* indecies = new unsigned int[6] {0, 1, 2, 1, 3, 2};
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indecies, GL_STATIC_DRAW);
+			IndexBuffer* ibo = new OpenGLIndexBuffer();
+			ibo->createBuffer(indecies, 6);
+			ibo->Bind();
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 			for (Layer* layer : m_LayerStack)
