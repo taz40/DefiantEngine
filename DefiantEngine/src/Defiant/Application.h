@@ -8,6 +8,8 @@
 #include "Events/ApplicationEvent.h"
 #include "ImGui/ImGuiLayer.h"
 
+#include "Defiant/Renderer/Shader.h"
+
 namespace Defiant {
 
 	class DE_API Application
@@ -34,7 +36,9 @@ namespace Defiant {
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
+
 		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 
 		static Application* s_Instance;
 	};
