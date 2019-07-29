@@ -13,8 +13,14 @@
     <Filter Include="src\Defiant\ImGui">
       <UniqueIdentifier>{212D9510-8D43-93A6-D6BA-1EC84210642E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Defiant\Renderer">
+      <UniqueIdentifier>{3D0C781D-299B-01E7-D2B9-15E2BE27128D}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -87,8 +93,14 @@
     <ClInclude Include="src\Defiant\MouseButtonCodes.h">
       <Filter>src\Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\GraphicsContext.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Defiant\Window.h">
       <Filter>src\Defiant</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1191,8 +1203,6 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Defiant\Renderer\GraphicsContext.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
@@ -1213,6 +1223,9 @@
     <ClCompile Include="src\Defiant\Log.cpp">
       <Filter>src\Defiant</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1222,6 +1235,5 @@
     <ClCompile Include="src\depch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
   </ItemGroup>
 </Project>

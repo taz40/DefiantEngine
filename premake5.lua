@@ -62,7 +62,7 @@ project "DefiantEngine"
 	}
 
 	filter "system:windows" 
-		systemversion "latest"
+		systemversion "latestw"
 
 		defines {
 			"DE_BUILD_DLL",
