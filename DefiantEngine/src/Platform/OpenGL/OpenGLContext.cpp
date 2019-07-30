@@ -16,7 +16,10 @@ namespace Defiant {
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		DE_CORE_ASSERT(status, "Failed to initialize glad");
 
-		DE_CORE_INFO("OpenGL Vendor: {0}, Device: {1}, Version: {2}", glGetString(GL_VENDOR), glGetString(GL_RENDERER), glGetString(GL_VERSION));
+		DE_CORE_INFO("OpenGL Info:");
+		DE_CORE_INFO("	Vendor: {0}", glGetString(GL_VENDOR));
+		DE_CORE_INFO("	Device: {0}", glGetString(GL_RENDERER));
+		DE_CORE_INFO("	Version : {0}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers() {

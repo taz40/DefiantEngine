@@ -1204,6 +1204,9 @@
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\Shader.h" />
+    <ClInclude Include="src\Defiant\Renderer\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\Defiant\Renderer\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
@@ -1237,5 +1240,8 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Renderer\Shader.cpp" />
+    <ClCompile Include="src\Defiant\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\Defiant\Renderer\Renderer.cpp" />
   </ItemGroup>
 </Project>
