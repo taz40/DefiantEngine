@@ -4,31 +4,11 @@
 #include "Defiant/Events/ApplicationEvent.h"
 #include "Defiant/Log.h"
 #include "Input.h"
-
-//WARNING! NOT PERMANATE
-#include <glad/glad.h>
+#include "Defiant/Renderer/Renderer.h"
 
 namespace Defiant {
 
 	Application* Application::s_Instance = nullptr;
-
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type) {
-		switch (type) {
-		case ShaderDataType::Float:	 return GL_FLOAT;
-		case ShaderDataType::Float2: return GL_FLOAT;
-		case ShaderDataType::Float3: return GL_FLOAT;
-		case ShaderDataType::Float4: return GL_FLOAT;
-		case ShaderDataType::Mat3:   return GL_FLOAT;
-		case ShaderDataType::Mat4:   return GL_FLOAT;
-		case ShaderDataType::Int:    return GL_INT;
-		case ShaderDataType::Int2:   return GL_INT;
-		case ShaderDataType::Int3:   return GL_INT;
-		case ShaderDataType::Int4:   return GL_INT;
-		case ShaderDataType::Bool:   return GL_BOOL;
-		}
-		DE_CORE_ASSERT(false, "Unknown Data Type");
-		return 0;
-	}
 
 	Application::Application()
 	{
@@ -41,34 +21,60 @@ namespace Defiant {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		glGenVertexArrays(1, &m_VertexArray);
-		glBindVertexArray(m_VertexArray);
+		m_VertexArray.reset(VertexArray::Create());
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
 			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
-		m_VertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 		BufferLayout layout = {
 			{ShaderDataType::Float3, "a_Position"},
 			{ShaderDataType::Float4, "a_Color"}
 		};
-		m_VertexBuffer->SetLayout(layout);
+		vertexBuffer->SetLayout(layout);
 
-		uint32_t index = 0;
-		for (const auto& element : m_VertexBuffer->GetLayout()) {
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, m_VertexBuffer->GetLayout().GetStride(), (const void*)element.Offset);
-			index++;
-		}
+		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
-		unsigned int indices[3] = {
+		uint32_t indices[3] = {
 			0, 1, 2
 		};
+		
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 
-		m_IndexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		m_VertexArray->SetIndexBuffer(indexBuffer);
+
+		m_SquareVA.reset(VertexArray::Create());
+		std::shared_ptr<VertexBuffer> squareVB;
+
+		float verticesSquare[4 * 3] = {
+			-0.75f, -0.75f, 0.0f,
+			 0.75f, -0.75f, 0.0f,
+			 0.75f,  0.75f, 0.0f,
+			-0.75f,  0.75f, 0.0f
+		};
+
+		squareVB.reset(VertexBuffer::Create(verticesSquare, sizeof(verticesSquare)));
+
+		BufferLayout squareVBLayout = {
+			{ShaderDataType::Float3, "a_Position"}
+		};
+		squareVB->SetLayout(squareVBLayout);
+		m_SquareVA->AddVertexBuffer(squareVB);
+
+		std::shared_ptr<IndexBuffer> squareIB;
+
+		uint32_t indicesSquare[6] = {
+			0, 1, 2,
+			2, 3, 0
+		};
+
+		squareIB.reset(IndexBuffer::Create(indicesSquare, sizeof(indicesSquare) / sizeof(uint32_t)));
+		m_SquareVA->SetIndexBuffer(squareIB);
 
 		std::string vertex = R"(
 			#version 330 core
@@ -100,9 +106,29 @@ namespace Defiant {
 			}	
 		)";
 
+		std::string vertexSquare = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			
+			void main(){
+				gl_Position = vec4(a_Position, 1.0);
+			}	
+		)";
+
+		std::string fragmentSquare = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 color;
+			
+			void main(){
+				color = vec4(0.3, 0.3, 0.8, 1.0);
+			}	
+		)";
+
 
 		m_Shader.reset(new Shader(vertex, fragment));
-
+		m_ShaderSquare.reset(new Shader(vertexSquare, fragmentSquare));
 	}
 
 	Application::~Application()
@@ -133,12 +159,15 @@ namespace Defiant {
 
 	void Application::Run() {
 		while (m_Running) {
-			glClearColor(0.1f, 0.1f, 0.1f, 1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1));
+			RenderCommand::Clear();
 
+			Renderer::BeginScene();
+			m_ShaderSquare->Bind();
+			Renderer::Submit(m_SquareVA);
 			m_Shader->Bind();
-			glBindVertexArray(m_VertexArray);
-			glDrawElements(GL_TRIANGLES, m_IndexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(m_VertexArray);
+			Renderer::EndScene();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
