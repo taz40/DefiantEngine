@@ -1,24 +1,15 @@
 #include <Defiant.h>
-#include <Defiant/Renderer/Buffer.h>
-#include <Defiant/Renderer/VertexArray.h>
-#include <Defiant/Renderer/Shader.h>
-#include <Defiant/Renderer/Renderer.h>
-#include <Defiant/Renderer/RenderCommand.h>
 
 #include "imgui/imgui.h"
-#include <Defiant/Renderer/Camera.h>
-#include <Defiant/Events/Event.h>
-
-#include <functional>
 
 class ExampleLayer : public Defiant::Layer {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -.9f, .9f){
+		: Layer("Example"), m_Camera(-1.6f, 1.6f, -.9f, .9f), camera_pos(0, 0, 0){
 		m_TriVA.reset(Defiant::VertexArray::Create());
 		std::shared_ptr<Defiant::VertexBuffer> triVB;
 
-		m_Camera.SetRotation(45.0f);
+		m_Camera.SetRotation(0.0f);
 
 		float triVertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -130,6 +121,7 @@ public:
 	}
 
 	void OnUpdate() override {
+		m_Camera.SetPosition(camera_pos);
 		Defiant::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
 		Defiant::RenderCommand::Clear();
 
@@ -137,10 +129,26 @@ public:
 		Defiant::Renderer::Submit(m_SqVA, m_SqShader);
 		Defiant::Renderer::Submit(m_TriVA, m_TriShader);
 		Defiant::Renderer::EndScene();
-		if(Defiant::Input::IsKeyPressed(DE_KEY_LEFT)){
-			m_Camera.SetRotation(m_Camera.GetRotation() - 1.0f);
-		}else if (Defiant::Input::IsKeyPressed(DE_KEY_RIGHT)) {
+
+		if(Defiant::Input::IsKeyPressed(DE_KEY_A)){
 			m_Camera.SetRotation(m_Camera.GetRotation() + 1.0f);
+		}
+		if (Defiant::Input::IsKeyPressed(DE_KEY_D)) {
+			m_Camera.SetRotation(m_Camera.GetRotation() - 1.0f);
+		}
+
+		if (Defiant::Input::IsKeyPressed(DE_KEY_LEFT)) {
+			camera_pos.x -= 0.1f;
+		}
+		if (Defiant::Input::IsKeyPressed(DE_KEY_RIGHT)) {
+			camera_pos.x += 0.1f;
+		}
+
+		if (Defiant::Input::IsKeyPressed(DE_KEY_UP)) {
+			camera_pos.y += 0.1f;
+		}
+		if (Defiant::Input::IsKeyPressed(DE_KEY_DOWN)) {
+			camera_pos.y -= 0.1f;
 		}
 	}
 
@@ -156,6 +164,7 @@ private:
 	std::shared_ptr<Defiant::VertexArray> m_SqVA;
 	std::shared_ptr<Defiant::Shader> m_TriShader;
 	std::shared_ptr<Defiant::Shader> m_SqShader;
+	glm::vec3 camera_pos;
 	Defiant::OrthographicCamera m_Camera;
 };
 

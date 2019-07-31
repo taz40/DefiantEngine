@@ -11,5 +11,16 @@
 
 #include "Defiant/ImGui/ImGuiLayer.h"
 
+//--- Renderer ---------------------
+
+#include <Defiant/Renderer/Renderer.h>
+#include <Defiant/Renderer/RenderCommand.h>
+
+#include <Defiant/Renderer/Buffer.h>
+#include <Defiant/Renderer/VertexArray.h>
+#include <Defiant/Renderer/Shader.h>
+
+#include <Defiant/Renderer/Camera.h>
+
 //--- Entry Point ------------------
 #include "Defiant/EntryPoint.h"
