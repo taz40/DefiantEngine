@@ -11,6 +11,7 @@
 #include "Defiant/Renderer/Shader.h"
 #include "Defiant/Renderer/Buffer.h"
 #include "Defiant/Renderer/VertexArray.h"
+#include "Defiant/Core/TimeStep.h"
 
 namespace Defiant {
 
@@ -34,15 +35,13 @@ namespace Defiant {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<VertexArray> m_VertexArray;
-		std::shared_ptr<VertexArray> m_SquareVA;
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<Shader> m_ShaderSquare;
+		float m_LastFrameTime = 0;
 
 		static Application* s_Instance;
 	};

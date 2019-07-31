@@ -11,6 +11,8 @@
 
 #include "Defiant/ImGui/ImGuiLayer.h"
 
+#include "Defiant/Core/TimeStep.h"
+
 //--- Renderer ---------------------
 
 #include <Defiant/Renderer/Renderer.h>

@@ -1213,6 +1213,7 @@
     <ClInclude Include="src\Defiant\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Defiant\Renderer\Camera.h" />
+    <ClInclude Include="src\Defiant\Core\TimeStep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">

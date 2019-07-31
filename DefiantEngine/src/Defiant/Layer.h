@@ -2,6 +2,7 @@
 
 #include "Defiant/Core.h"
 #include "Defiant/Events/Event.h"
+#include "Defiant/Core/TimeStep.h"
 
 namespace Defiant {
 	
@@ -12,7 +13,7 @@ namespace Defiant {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(TimeStep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

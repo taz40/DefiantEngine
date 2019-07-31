@@ -6,6 +6,8 @@
 #include "Input.h"
 #include "Defiant/Renderer/Renderer.h"
 
+#include <GLFW/glfw3.h>
+
 namespace Defiant {
 
 	Application* Application::s_Instance = nullptr;
@@ -51,8 +53,12 @@ namespace Defiant {
 	void Application::Run() {
 		while (m_Running) {
 
+			float time = (float)glfwGetTime();
+			TimeStep timestep = time - m_LastFrameTime;
+			m_LastFrameTime = time;
+
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)

@@ -120,7 +120,8 @@ public:
 
 	}
 
-	void OnUpdate() override {
+	void OnUpdate(Defiant::TimeStep ts) override {
+		
 		m_Camera.SetPosition(camera_pos);
 		Defiant::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
 		Defiant::RenderCommand::Clear();
@@ -131,24 +132,24 @@ public:
 		Defiant::Renderer::EndScene();
 
 		if(Defiant::Input::IsKeyPressed(DE_KEY_A)){
-			m_Camera.SetRotation(m_Camera.GetRotation() + 1.0f);
+			m_Camera.SetRotation(m_Camera.GetRotation() + 180.0f * ts);
 		}
 		if (Defiant::Input::IsKeyPressed(DE_KEY_D)) {
-			m_Camera.SetRotation(m_Camera.GetRotation() - 1.0f);
+			m_Camera.SetRotation(m_Camera.GetRotation() - 180.0f * ts);
 		}
 
 		if (Defiant::Input::IsKeyPressed(DE_KEY_LEFT)) {
-			camera_pos.x -= 0.1f;
+			camera_pos.x -= 5 * ts;
 		}
 		if (Defiant::Input::IsKeyPressed(DE_KEY_RIGHT)) {
-			camera_pos.x += 0.1f;
+			camera_pos.x += 5 * ts;
 		}
 
 		if (Defiant::Input::IsKeyPressed(DE_KEY_UP)) {
-			camera_pos.y += 0.1f;
+			camera_pos.y += 5 * ts;
 		}
 		if (Defiant::Input::IsKeyPressed(DE_KEY_DOWN)) {
-			camera_pos.y -= 0.1f;
+			camera_pos.y -= 5 * ts;
 		}
 	}
 
