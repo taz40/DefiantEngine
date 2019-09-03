@@ -1,14 +1,17 @@
 #include <Defiant.h>
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
 #include "glm/gtc/matrix_transform.hpp"
+#include <glm/gtc/type_ptr.hpp>
 
 class ExampleLayer : public Defiant::Layer {
 public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-1.6f, 1.6f, -.9f, .9f), camera_pos(0, 0, 0), m_SquarePos(0){
 		m_TriVA.reset(Defiant::VertexArray::Create());
-		std::shared_ptr<Defiant::VertexBuffer> triVB;
+		Defiant::Ref<Defiant::VertexBuffer> triVB;
 
 		m_Camera.SetRotation(0.0f);
 
@@ -26,7 +29,7 @@ public:
 		triVB->SetLayout(triLayout);
 		m_TriVA->AddVertexBuffer(triVB);
 
-		std::shared_ptr<Defiant::IndexBuffer> triIB;
+		Defiant::Ref<Defiant::IndexBuffer> triIB;
 
 		uint32_t triIndices[3] = {
 			0, 1, 2
@@ -36,7 +39,7 @@ public:
 		m_TriVA->SetIndexBuffer(triIB);
 
 		m_SqVA.reset(Defiant::VertexArray::Create());
-		std::shared_ptr<Defiant::VertexBuffer> sqVB;
+		Defiant::Ref<Defiant::VertexBuffer> sqVB;
 
 		float verticesSquare[4 * 3] = {
 			-0.5f, -0.5f, 0.0f,
@@ -52,7 +55,7 @@ public:
 		sqVB->SetLayout(sqLayout);
 		m_SqVA->AddVertexBuffer(sqVB);
 
-		std::shared_ptr<Defiant::IndexBuffer> sqIB;
+		Defiant::Ref<Defiant::IndexBuffer> sqIB;
 
 		uint32_t indicesSquare[6] = {
 			0, 1, 2,
@@ -113,14 +116,17 @@ public:
 			#version 330 core
 
 			layout(location = 0) out vec4 color;
+
+			uniform vec3 u_Color;
 			
 			void main(){
 				color = vec4(0.3, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}	
 		)";
 
-		m_TriShader.reset(new Defiant::Shader(vertexTri, fragmentTri));
-		m_SqShader.reset(new Defiant::Shader(vertexSquare, fragmentSquare));
+		m_TriShader.reset(Defiant::Shader::Create(vertexTri, fragmentTri));
+		m_SqShader.reset(Defiant::Shader::Create(vertexSquare, fragmentSquare));
 
 	}
 
@@ -134,6 +140,9 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(.1f));
 
+		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_SqShader)->Bind();
+		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_SqShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
@@ -142,7 +151,7 @@ public:
 			}
 		}
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePos) * glm::scale(glm::mat4(1.0f), glm::vec3(.2f));
-		Defiant::Renderer::Submit(m_SqVA, m_SqShader, transform);
+		Defiant::Renderer::Submit(m_TriVA, m_TriShader, transform);
 		//Defiant::Renderer::Submit(m_TriVA, m_TriShader);
 		Defiant::Renderer::EndScene();
 
@@ -163,18 +172,24 @@ public:
 
 	void OnImGuiRender() override {
 
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
+
 	}
 
 	void OnEvent(Defiant::Event& event) override {
 		
 	}
 private:
-	std::shared_ptr<Defiant::VertexArray> m_TriVA;
-	std::shared_ptr<Defiant::VertexArray> m_SqVA;
-	std::shared_ptr<Defiant::Shader> m_TriShader;
-	std::shared_ptr<Defiant::Shader> m_SqShader;
+	Defiant::Ref<Defiant::VertexArray> m_TriVA;
+	Defiant::Ref<Defiant::VertexArray> m_SqVA;
+	Defiant::Ref<Defiant::Shader> m_TriShader;
+	Defiant::Ref<Defiant::Shader> m_SqShader;
 	glm::vec3 camera_pos;
 	Defiant::OrthographicCamera m_Camera;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 
 	glm::vec3 m_SquarePos;
 };
