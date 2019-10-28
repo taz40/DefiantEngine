@@ -15,6 +15,7 @@ IncludeDir["GLFW"] = "DefiantEngine/vendor/GLFW/include"
 IncludeDir["glad"] = "DefiantEngine/vendor/glad/include"
 IncludeDir["imgui"] = "DefiantEngine/vendor/imgui"
 IncludeDir["glm"] = "DefiantEngine/vendor/glm"
+IncludeDir["stb_image"] = "DefiantEngine/vendor/stb_image"
 
 
 include "DefiantEngine/vendor/GLFW"
@@ -41,6 +42,8 @@ project "DefiantEngine"
 	files{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -51,7 +54,8 @@ project "DefiantEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glad}",
 		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links{
@@ -62,7 +66,7 @@ project "DefiantEngine"
 	}
 
 	filter "system:windows" 
-		systemversion "latestw"
+		systemversion "latest"
 
 		defines {
 			"DE_BUILD_DLL",

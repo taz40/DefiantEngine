@@ -7,6 +7,9 @@
     <Filter Include="src\Defiant">
       <UniqueIdentifier>{B7CA7B72-2380-F467-AC74-EE3E1829EB6B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Defiant\Core">
+      <UniqueIdentifier>{6F39C317-5B32-E269-8464-C7EE70BCC175}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Defiant\Events">
       <UniqueIdentifier>{BB62991A-A746-5A70-10A7-54C3FCA944F2}</UniqueIdentifier>
     </Filter>
@@ -46,6 +49,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Defiant.h">
@@ -56,6 +62,9 @@
     </ClInclude>
     <ClInclude Include="src\Defiant\Core.h">
       <Filter>src\Defiant</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\TimeStep.h">
+      <Filter>src\Defiant\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Defiant\EntryPoint.h">
       <Filter>src\Defiant</Filter>
@@ -93,13 +102,52 @@
     <ClInclude Include="src\Defiant\MouseButtonCodes.h">
       <Filter>src\Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\Buffer.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\Camera.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\GraphicsContext.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\RenderCommand.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\Renderer.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\RendererAPI.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\Shader.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\Texture.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\VertexArray.h">
       <Filter>src\Defiant\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Defiant\Window.h">
       <Filter>src\Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
@@ -1203,18 +1251,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Defiant\Renderer\Shader.h" />
-    <ClInclude Include="src\Defiant\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\Defiant\Renderer\Renderer.h" />
-    <ClInclude Include="src\Defiant\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Defiant\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\Defiant\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\Defiant\Renderer\Camera.h" />
-    <ClInclude Include="src\Defiant\Core\TimeStep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
@@ -1235,7 +1274,46 @@
     <ClCompile Include="src\Defiant\Log.cpp">
       <Filter>src\Defiant</Filter>
     </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\Buffer.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\Camera.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\RenderCommand.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\Renderer.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\RendererAPI.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\Shader.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\Texture.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\VertexArray.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1247,16 +1325,8 @@
     <ClCompile Include="src\depch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Defiant\Renderer\Shader.cpp" />
-    <ClCompile Include="src\Defiant\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\Defiant\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Defiant\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Defiant\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\Defiant\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\Defiant\Renderer\Camera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

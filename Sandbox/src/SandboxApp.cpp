@@ -10,7 +10,7 @@ class ExampleLayer : public Defiant::Layer {
 public:
 	ExampleLayer()
 		: Layer("Example"), m_Camera(-1.6f, 1.6f, -.9f, .9f), camera_pos(0, 0, 0), m_SquarePos(0){
-		m_TriVA.reset(Defiant::VertexArray::Create());
+		m_TriVA = Defiant::VertexArray::Create();
 		Defiant::Ref<Defiant::VertexBuffer> triVB;
 
 		m_Camera.SetRotation(0.0f);
@@ -38,19 +38,20 @@ public:
 		triIB.reset(Defiant::IndexBuffer::Create(triIndices, sizeof(triIndices) / sizeof(uint32_t)));
 		m_TriVA->SetIndexBuffer(triIB);
 
-		m_SqVA.reset(Defiant::VertexArray::Create());
+		m_SqVA = Defiant::VertexArray::Create();
 		Defiant::Ref<Defiant::VertexBuffer> sqVB;
 
-		float verticesSquare[4 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float verticesSquare[4 * 5] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 		sqVB.reset(Defiant::VertexBuffer::Create(verticesSquare, sizeof(verticesSquare)));
 		Defiant::BufferLayout sqLayout = {
-			{Defiant::ShaderDataType::Float3, "a_Position"}
+			{Defiant::ShaderDataType::Float3, "a_Position"},
+			{Defiant::ShaderDataType::Float2, "a_TexCoord"}
 		};
 		sqVB->SetLayout(sqLayout);
 		m_SqVA->AddVertexBuffer(sqVB);
@@ -98,7 +99,9 @@ public:
 			}	
 		)";
 
-		std::string vertexSquare = R"(
+		m_TriShader.reset(Defiant::Shader::Create(vertexTri, fragmentTri));
+
+		std::string vertexFlatColor = R"(
 			#version 330 core
 
 			layout(location = 0) in vec3 a_Position;
@@ -112,7 +115,7 @@ public:
 			}	
 		)";
 
-		std::string fragmentSquare = R"(
+		std::string fragmentFlatColor = R"(
 			#version 330 core
 
 			layout(location = 0) out vec4 color;
@@ -125,8 +128,45 @@ public:
 			}	
 		)";
 
-		m_TriShader.reset(Defiant::Shader::Create(vertexTri, fragmentTri));
-		m_SqShader.reset(Defiant::Shader::Create(vertexSquare, fragmentSquare));
+		m_FlatColorShader.reset(Defiant::Shader::Create(vertexFlatColor, fragmentFlatColor));
+
+		std::string vertexTexture = R"(
+			#version 330 core
+
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			
+			void main(){
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}	
+		)";
+
+		std::string fragmentTexture = R"(
+			#version 330 core
+
+			layout(location = 0) out vec4 color;
+
+			uniform sampler2D u_Texture;
+
+			in vec2 v_TexCoord;
+			
+			void main(){
+				color = texture(u_Texture, v_TexCoord);
+			}	
+		)";
+
+		m_TextureShader.reset(Defiant::Shader::Create(vertexTexture, fragmentTexture));
+		m_Texture = Defiant::Texture2D::Create("assets/textures/checkerboard.png");
+
+		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 
 	}
 
@@ -140,18 +180,21 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(.1f));
 
-		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_SqShader)->Bind();
-		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_SqShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Defiant::Renderer::Submit(m_SqVA, m_SqShader, transform);
+				Defiant::Renderer::Submit(m_SqVA, m_FlatColorShader, transform);
 			}
 		}
+		m_Texture->Bind();
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePos) * glm::scale(glm::mat4(1.0f), glm::vec3(.2f));
-		Defiant::Renderer::Submit(m_TriVA, m_TriShader, transform);
+		Defiant::Renderer::Submit(m_SqVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		
+		//Defiant::Renderer::Submit(m_TriVA, m_TriShader, transform);
 		//Defiant::Renderer::Submit(m_TriVA, m_TriShader);
 		Defiant::Renderer::EndScene();
 
@@ -185,7 +228,9 @@ private:
 	Defiant::Ref<Defiant::VertexArray> m_TriVA;
 	Defiant::Ref<Defiant::VertexArray> m_SqVA;
 	Defiant::Ref<Defiant::Shader> m_TriShader;
-	Defiant::Ref<Defiant::Shader> m_SqShader;
+	Defiant::Ref<Defiant::Shader> m_FlatColorShader;
+	Defiant::Ref<Defiant::Shader> m_TextureShader;
+	Defiant::Ref<Defiant::Texture> m_Texture;
 	glm::vec3 camera_pos;
 	Defiant::OrthographicCamera m_Camera;
 

@@ -1,15 +1,14 @@
 #include "depch.h"
+#include "Texture.h"
 
-#include "VertexArray.h"
-#include "Defiant/Renderer/Renderer.h"
-
-#include "Platform/OpenGL/OpenGLVertexArray.h"
+#include "Renderer.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace Defiant {
-	Ref<VertexArray> VertexArray::Create() {
+	Ref<Texture2D> Texture2D::Create(const std::string& path) {
 		switch (Renderer::GetAPI()) {
 		case RendererAPI::API::None: DE_CORE_ASSERT(false, "Render API None is not supported");  return nullptr;
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>();
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLTexture2D>(path);
 		}
 
 		DE_CORE_ASSERT(false, "unknown renderer api");

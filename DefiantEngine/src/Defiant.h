@@ -21,6 +21,7 @@
 #include <Defiant/Renderer/Buffer.h>
 #include <Defiant/Renderer/VertexArray.h>
 #include <Defiant/Renderer/Shader.h>
+#include <Defiant/Renderer/Texture.h>
 
 #include <Defiant/Renderer/Camera.h>
 
