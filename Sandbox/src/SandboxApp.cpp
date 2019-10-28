@@ -164,6 +164,7 @@ public:
 
 		m_TextureShader.reset(Defiant::Shader::Create(vertexTexture, fragmentTexture));
 		m_Texture = Defiant::Texture2D::Create("assets/textures/checkerboard.png");
+		m_ChernoTexture = Defiant::Texture2D::Create("assets/textures/ChernoLogo.png");
 
 		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<Defiant::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -190,10 +191,13 @@ public:
 				Defiant::Renderer::Submit(m_SqVA, m_FlatColorShader, transform);
 			}
 		}
+		//glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePos) * glm::scale(glm::mat4(1.0f), glm::vec3(.2f));
 		m_Texture->Bind();
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePos) * glm::scale(glm::mat4(1.0f), glm::vec3(.2f));
 		Defiant::Renderer::Submit(m_SqVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-		
+
+		m_ChernoTexture->Bind();
+		Defiant::Renderer::Submit(m_SqVA, m_TextureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 		//Defiant::Renderer::Submit(m_TriVA, m_TriShader, transform);
 		//Defiant::Renderer::Submit(m_TriVA, m_TriShader);
 		Defiant::Renderer::EndScene();
@@ -231,6 +235,7 @@ private:
 	Defiant::Ref<Defiant::Shader> m_FlatColorShader;
 	Defiant::Ref<Defiant::Shader> m_TextureShader;
 	Defiant::Ref<Defiant::Texture> m_Texture;
+	Defiant::Ref<Defiant::Texture> m_ChernoTexture;
 	glm::vec3 camera_pos;
 	Defiant::OrthographicCamera m_Camera;
 

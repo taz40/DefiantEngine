@@ -4,6 +4,11 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Defiant {
+
+	void Renderer::Init() {
+		RenderCommand::Init();
+	}
+
 	Renderer::SceneData* Renderer::m_SceneData = new Renderer::SceneData();
 
 	void Renderer::BeginScene(OrthographicCamera& camera) {
