@@ -8,6 +8,7 @@
 #include "Defiant/Input.h"
 #include "Defiant/KeyCodes.h"
 #include "Defiant/MouseButtonCodes.h"
+#include "Defiant/OrthographicCameraController.h"
 
 #include "Defiant/ImGui/ImGuiLayer.h"
 

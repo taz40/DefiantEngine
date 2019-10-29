@@ -156,6 +156,7 @@
     <ClInclude Include="src\Defiant\LayerStack.h" />
     <ClInclude Include="src\Defiant\Log.h" />
     <ClInclude Include="src\Defiant\MouseButtonCodes.h" />
+    <ClInclude Include="src\Defiant\OrthographicCameraController.h" />
     <ClInclude Include="src\Defiant\Renderer\Buffer.h" />
     <ClInclude Include="src\Defiant\Renderer\Camera.h" />
     <ClInclude Include="src\Defiant\Renderer\GraphicsContext.h" />
@@ -548,6 +549,7 @@
     <ClCompile Include="src\Defiant\Layer.cpp" />
     <ClCompile Include="src\Defiant\LayerStack.cpp" />
     <ClCompile Include="src\Defiant\Log.cpp" />
+    <ClCompile Include="src\Defiant\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Defiant\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Defiant\Renderer\Camera.cpp" />
     <ClCompile Include="src\Defiant\Renderer\RenderCommand.cpp" />

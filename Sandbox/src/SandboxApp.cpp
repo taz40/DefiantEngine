@@ -9,11 +9,9 @@
 class ExampleLayer : public Defiant::Layer {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -.9f, .9f), camera_pos(0, 0, 0), m_SquarePos(0){
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f){
 		m_TriVA = Defiant::VertexArray::Create();
 		Defiant::Ref<Defiant::VertexBuffer> triVB;
-
-		m_Camera.SetRotation(0.0f);
 
 		float triVertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -142,12 +140,13 @@ public:
 	}
 
 	void OnUpdate(Defiant::TimeStep ts) override {
+
+		m_CameraController.OnUpdate(ts);
 		
-		m_Camera.SetPosition(m_SquarePos);
 		Defiant::RenderCommand::SetClearColor(glm::vec4(0.1f, 0.1f, 0.1f, 1.0f));
 		Defiant::RenderCommand::Clear();
 
-		Defiant::Renderer::BeginScene(m_Camera);
+		Defiant::Renderer::BeginScene(m_CameraController.getCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(.1f));
 
@@ -176,20 +175,6 @@ public:
 		//Defiant::Renderer::Submit(m_TriVA, m_TriShader, transform);
 		//Defiant::Renderer::Submit(m_TriVA, m_TriShader);
 		Defiant::Renderer::EndScene();
-
-		if (Defiant::Input::IsKeyPressed(DE_KEY_LEFT)) {
-			m_SquarePos.x -= 1 * ts;
-		}
-		if (Defiant::Input::IsKeyPressed(DE_KEY_RIGHT)) {
-			m_SquarePos.x += 1 * ts;
-		}
-
-		if (Defiant::Input::IsKeyPressed(DE_KEY_UP)) {
-			m_SquarePos.y += 1 * ts;
-		}
-		if (Defiant::Input::IsKeyPressed(DE_KEY_DOWN)) {
-			m_SquarePos.y -= 1 * ts;
-		}
 	}
 
 	void OnImGuiRender() override {
@@ -201,7 +186,7 @@ public:
 	}
 
 	void OnEvent(Defiant::Event& event) override {
-		
+		m_CameraController.OnEvent(event);
 	}
 private:
 	Defiant::ShaderLibrary m_ShaderLibrary;
@@ -209,12 +194,9 @@ private:
 	Defiant::Ref<Defiant::VertexArray> m_SqVA;
 	Defiant::Ref<Defiant::Texture> m_Texture;
 	Defiant::Ref<Defiant::Texture> m_ChernoTexture;
-	glm::vec3 camera_pos;
-	Defiant::OrthographicCamera m_Camera;
+	Defiant::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
-
-	glm::vec3 m_SquarePos;
 };
 
 class Sandbox : public Defiant::Application {
