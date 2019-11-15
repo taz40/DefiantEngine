@@ -2,7 +2,7 @@
 #include "Application.h"
 
 #include "Defiant/Events/ApplicationEvent.h"
-#include "Defiant/Log.h"
+#include "Defiant/Core/Log.h"
 #include "Input.h"
 #include "Defiant/Renderer/Renderer.h"
 

@@ -3,10 +3,10 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Defiant/LayerStack.h"
-#include "Events/Event.h"
-#include "Events/ApplicationEvent.h"
-#include "ImGui/ImGuiLayer.h"
+#include "Defiant/Core/LayerStack.h"
+#include "Defiant/Events/Event.h"
+#include "Defiant/Events/ApplicationEvent.h"
+#include "Defiant/ImGui/ImGuiLayer.h"
 
 #include "Defiant/Renderer/Shader.h"
 #include "Defiant/Renderer/Buffer.h"

@@ -1,8 +1,8 @@
 #include "depch.h"
 #include "OrthographicCameraController.h"
 
-#include "Input.h"
-#include "KeyCodes.h"
+#include "Defiant/Core/Input.h"
+#include "Defiant/Core/KeyCodes.h"
 
 namespace Defiant {
 	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation)

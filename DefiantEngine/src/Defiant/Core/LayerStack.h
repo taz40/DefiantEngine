@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Defiant/Core.h"
+#include "Defiant/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>

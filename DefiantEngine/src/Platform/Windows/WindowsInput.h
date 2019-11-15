@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Defiant/Input.h"
+#include "Defiant/Core/Input.h"
 
 namespace Defiant {
 	class WindowsInput : public Input {

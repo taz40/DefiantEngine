@@ -1,6 +1,6 @@
 #include "depch.h"
 #include "WindowsInput.h"
-#include "DEfiant/Application.h"
+#include "Defiant/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

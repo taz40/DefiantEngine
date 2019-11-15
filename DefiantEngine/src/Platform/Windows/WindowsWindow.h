@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Defiant/Window.h"
+#include "Defiant/Core/Window.h"
 
 #include "GLFW/glfw3.h"
 

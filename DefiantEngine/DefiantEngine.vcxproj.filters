@@ -57,17 +57,38 @@
     <ClInclude Include="src\Defiant.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Defiant\Application.h">
-      <Filter>src\Defiant</Filter>
+    <ClInclude Include="src\Defiant\Core\Application.h">
+      <Filter>src\Defiant\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Defiant\Core.h">
-      <Filter>src\Defiant</Filter>
+    <ClInclude Include="src\Defiant\Core\Core.h">
+      <Filter>src\Defiant\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\EntryPoint.h">
+      <Filter>src\Defiant\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\Input.h">
+      <Filter>src\Defiant\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\KeyCodes.h">
+      <Filter>src\Defiant\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\Layer.h">
+      <Filter>src\Defiant\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\LayerStack.h">
+      <Filter>src\Defiant\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\Log.h">
+      <Filter>src\Defiant\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Core\MouseButtonCodes.h">
+      <Filter>src\Defiant\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Defiant\Core\TimeStep.h">
       <Filter>src\Defiant\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Defiant\EntryPoint.h">
-      <Filter>src\Defiant</Filter>
+    <ClInclude Include="src\Defiant\Core\Window.h">
+      <Filter>src\Defiant\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Defiant\Events\ApplicationEvent.h">
       <Filter>src\Defiant\Events</Filter>
@@ -84,27 +105,6 @@
     <ClInclude Include="src\Defiant\ImGui\ImGuiLayer.h">
       <Filter>src\Defiant\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Defiant\Input.h">
-      <Filter>src\Defiant</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Defiant\KeyCodes.h">
-      <Filter>src\Defiant</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Defiant\Layer.h">
-      <Filter>src\Defiant</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Defiant\LayerStack.h">
-      <Filter>src\Defiant</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Defiant\Log.h">
-      <Filter>src\Defiant</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Defiant\MouseButtonCodes.h">
-      <Filter>src\Defiant</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Defiant\OrthographicCameraController.h">
-      <Filter>src\Defiant</Filter>
-    </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\Buffer.h">
       <Filter>src\Defiant\Renderer</Filter>
     </ClInclude>
@@ -112,6 +112,9 @@
       <Filter>src\Defiant\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\GraphicsContext.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\OrthographicCameraController.h">
       <Filter>src\Defiant\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\RenderCommand.h">
@@ -131,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\VertexArray.h">
       <Filter>src\Defiant\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Defiant\Window.h">
-      <Filter>src\Defiant</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1259,8 +1259,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Defiant\Application.cpp">
-      <Filter>src\Defiant</Filter>
+    <ClCompile Include="src\Defiant\Core\Application.cpp">
+      <Filter>src\Defiant\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Core\Layer.cpp">
+      <Filter>src\Defiant\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Core\LayerStack.cpp">
+      <Filter>src\Defiant\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Core\Log.cpp">
+      <Filter>src\Defiant\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\ImGui\ImGuiLayer.cpp">
       <Filter>src\Defiant\ImGui</Filter>
@@ -1268,22 +1277,13 @@
     <ClCompile Include="src\Defiant\ImGui\imguiBuild.cpp">
       <Filter>src\Defiant\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Defiant\Layer.cpp">
-      <Filter>src\Defiant</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Defiant\LayerStack.cpp">
-      <Filter>src\Defiant</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Defiant\Log.cpp">
-      <Filter>src\Defiant</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Defiant\OrthographicCameraController.cpp">
-      <Filter>src\Defiant</Filter>
-    </ClCompile>
     <ClCompile Include="src\Defiant\Renderer\Buffer.cpp">
       <Filter>src\Defiant\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Renderer\Camera.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Defiant\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Renderer\RenderCommand.cpp">

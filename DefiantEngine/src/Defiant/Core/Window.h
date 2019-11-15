@@ -2,7 +2,7 @@
 
 #include "depch.h"
 
-#include "Defiant/Core.h"
+#include "Defiant/Core/Core.h"
 #include "Defiant/Events/Event.h"
 
 namespace Defiant {

@@ -141,32 +141,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Defiant.h" />
-    <ClInclude Include="src\Defiant\Application.h" />
-    <ClInclude Include="src\Defiant\Core.h" />
+    <ClInclude Include="src\Defiant\Core\Application.h" />
+    <ClInclude Include="src\Defiant\Core\Core.h" />
+    <ClInclude Include="src\Defiant\Core\EntryPoint.h" />
+    <ClInclude Include="src\Defiant\Core\Input.h" />
+    <ClInclude Include="src\Defiant\Core\KeyCodes.h" />
+    <ClInclude Include="src\Defiant\Core\Layer.h" />
+    <ClInclude Include="src\Defiant\Core\LayerStack.h" />
+    <ClInclude Include="src\Defiant\Core\Log.h" />
+    <ClInclude Include="src\Defiant\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Defiant\Core\TimeStep.h" />
-    <ClInclude Include="src\Defiant\EntryPoint.h" />
+    <ClInclude Include="src\Defiant\Core\Window.h" />
     <ClInclude Include="src\Defiant\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Defiant\Events\Event.h" />
     <ClInclude Include="src\Defiant\Events\KeyEvent.h" />
     <ClInclude Include="src\Defiant\Events\MouseEvent.h" />
     <ClInclude Include="src\Defiant\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Defiant\Input.h" />
-    <ClInclude Include="src\Defiant\KeyCodes.h" />
-    <ClInclude Include="src\Defiant\Layer.h" />
-    <ClInclude Include="src\Defiant\LayerStack.h" />
-    <ClInclude Include="src\Defiant\Log.h" />
-    <ClInclude Include="src\Defiant\MouseButtonCodes.h" />
-    <ClInclude Include="src\Defiant\OrthographicCameraController.h" />
     <ClInclude Include="src\Defiant\Renderer\Buffer.h" />
     <ClInclude Include="src\Defiant\Renderer\Camera.h" />
     <ClInclude Include="src\Defiant\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\Defiant\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Defiant\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Defiant\Renderer\Renderer.h" />
     <ClInclude Include="src\Defiant\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Defiant\Renderer\Shader.h" />
     <ClInclude Include="src\Defiant\Renderer\Texture.h" />
     <ClInclude Include="src\Defiant\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Defiant\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -543,15 +543,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Defiant\Application.cpp" />
+    <ClCompile Include="src\Defiant\Core\Application.cpp" />
+    <ClCompile Include="src\Defiant\Core\Layer.cpp" />
+    <ClCompile Include="src\Defiant\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Defiant\Core\Log.cpp" />
     <ClCompile Include="src\Defiant\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Defiant\ImGui\imguiBuild.cpp" />
-    <ClCompile Include="src\Defiant\Layer.cpp" />
-    <ClCompile Include="src\Defiant\LayerStack.cpp" />
-    <ClCompile Include="src\Defiant\Log.cpp" />
-    <ClCompile Include="src\Defiant\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Defiant\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Defiant\Renderer\Camera.cpp" />
+    <ClCompile Include="src\Defiant\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Defiant\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Defiant\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Defiant\Renderer\RendererAPI.cpp" />

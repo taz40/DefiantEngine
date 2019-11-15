@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Defiant/Log.h"
+#include "Defiant/Core/Log.h"
 
 #ifdef DE_PLATFORM_WINDOWS
 	#include <Windows.h>

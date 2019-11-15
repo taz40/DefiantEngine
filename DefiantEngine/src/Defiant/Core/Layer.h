@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Defiant/Core.h"
+#include "Defiant/Core/Core.h"
 #include "Defiant/Events/Event.h"
 #include "Defiant/Core/TimeStep.h"
 

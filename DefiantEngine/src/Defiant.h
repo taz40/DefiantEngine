@@ -1,14 +1,14 @@
 #pragma once
 
 // For use by defiant applications
-#include "Defiant/Application.h"
-#include "Defiant/Layer.h"
-#include "Defiant/Log.h"
+#include "Defiant/Core/Application.h"
+#include "Defiant/Core/Layer.h"
+#include "Defiant/Core/Log.h"
 
-#include "Defiant/Input.h"
-#include "Defiant/KeyCodes.h"
-#include "Defiant/MouseButtonCodes.h"
-#include "Defiant/OrthographicCameraController.h"
+#include "Defiant/Core/Input.h"
+#include "Defiant/Core/KeyCodes.h"
+#include "Defiant/Core/MouseButtonCodes.h"
+#include "Defiant/Renderer/OrthographicCameraController.h"
 
 #include "Defiant/ImGui/ImGuiLayer.h"
 
@@ -27,4 +27,4 @@
 #include <Defiant/Renderer/Camera.h>
 
 //--- Entry Point ------------------
-#include "Defiant/EntryPoint.h"
+#include "Defiant/Core/EntryPoint.h"

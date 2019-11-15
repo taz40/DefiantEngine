@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Defiant/Core.h"
+#include "Defiant/Core/Core.h"
 
 namespace Defiant {
 	class Texture {
