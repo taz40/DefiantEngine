@@ -102,6 +102,9 @@
     <ClInclude Include="src\Defiant\MouseButtonCodes.h">
       <Filter>src\Defiant</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\OrthographicCameraController.h">
+      <Filter>src\Defiant</Filter>
+    </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\Buffer.h">
       <Filter>src\Defiant\Renderer</Filter>
     </ClInclude>
@@ -1254,7 +1257,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Defiant\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Application.cpp">
@@ -1273,6 +1275,9 @@
       <Filter>src\Defiant</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Log.cpp">
+      <Filter>src\Defiant</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\OrthographicCameraController.cpp">
       <Filter>src\Defiant</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Renderer\Buffer.cpp">
@@ -1329,6 +1334,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Defiant\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>
