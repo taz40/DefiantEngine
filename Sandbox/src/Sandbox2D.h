@@ -17,5 +17,6 @@ public:
 private:
 	Defiant::OrthographicCameraController m_CameraController;
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+	Defiant::Ref<Defiant::Texture2D> m_Texture;
 
 };
