@@ -1,10 +1,12 @@
 #include <Defiant.h>
+#include <Defiant/Core/EntryPoint.h>
 
-#include "Platform/OpenGL/OpenGLShader.h"
 
 #include "imgui/imgui.h"
 #include "glm/gtc/matrix_transform.hpp"
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
 
 class ExampleLayer : public Defiant::Layer {
 public:
@@ -19,7 +21,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
 
-		triVB.reset(Defiant::VertexBuffer::Create(triVertices, sizeof(triVertices)));
+		triVB = Defiant::VertexBuffer::Create(triVertices, sizeof(triVertices));
 		Defiant::BufferLayout triLayout = {
 			{Defiant::ShaderDataType::Float3, "a_Position"},
 			{Defiant::ShaderDataType::Float4, "a_Color"}
@@ -33,7 +35,7 @@ public:
 			0, 1, 2
 		};
 
-		triIB.reset(Defiant::IndexBuffer::Create(triIndices, sizeof(triIndices) / sizeof(uint32_t)));
+		triIB = Defiant::IndexBuffer::Create(triIndices, sizeof(triIndices) / sizeof(uint32_t));
 		m_TriVA->SetIndexBuffer(triIB);
 
 		m_SqVA = Defiant::VertexArray::Create();
@@ -46,7 +48,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		sqVB.reset(Defiant::VertexBuffer::Create(verticesSquare, sizeof(verticesSquare)));
+		sqVB = Defiant::VertexBuffer::Create(verticesSquare, sizeof(verticesSquare));
 		Defiant::BufferLayout sqLayout = {
 			{Defiant::ShaderDataType::Float3, "a_Position"},
 			{Defiant::ShaderDataType::Float2, "a_TexCoord"}
@@ -61,7 +63,7 @@ public:
 			2, 3, 0
 		};
 
-		sqIB.reset(Defiant::IndexBuffer::Create(indicesSquare, sizeof(indicesSquare) / sizeof(uint32_t)));
+		sqIB = Defiant::IndexBuffer::Create(indicesSquare, sizeof(indicesSquare) / sizeof(uint32_t));
 		m_SqVA->SetIndexBuffer(sqIB);
 
 		std::string vertexTri = R"(
@@ -134,8 +136,8 @@ public:
 
 		auto textureShader = m_ShaderLibrary.Get("Texture");
 
-		std::dynamic_pointer_cast<Defiant::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Defiant::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
+		textureShader->Bind();
+		textureShader->SetInt("u_Texture", 0);
 
 	}
 
@@ -152,8 +154,8 @@ public:
 
 		auto flatColorShader = m_ShaderLibrary.Get("FlatColor");
 
-		std::dynamic_pointer_cast<Defiant::OpenGLShader>(flatColorShader)->Bind();
-		std::dynamic_pointer_cast<Defiant::OpenGLShader>(flatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		flatColorShader->Bind();
+		flatColorShader->SetFloat3("u_Color", m_SquareColor);
 
 		for (int y = 0; y < 20; y++) {
 			for (int x = 0; x < 20; x++) {
@@ -203,7 +205,8 @@ class Sandbox : public Defiant::Application {
 public:
 	Sandbox() {
 		DE_TRACE("Created Sandbox App");
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() {

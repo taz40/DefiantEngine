@@ -17,6 +17,7 @@
 //--- Renderer ---------------------
 
 #include <Defiant/Renderer/Renderer.h>
+#include <Defiant/Renderer/Renderer2D.h>
 #include <Defiant/Renderer/RenderCommand.h>
 
 #include <Defiant/Renderer/Buffer.h>
@@ -25,6 +26,3 @@
 #include <Defiant/Renderer/Texture.h>
 
 #include <Defiant/Renderer/Camera.h>
-
-//--- Entry Point ------------------
-#include "Defiant/Core/EntryPoint.h"
