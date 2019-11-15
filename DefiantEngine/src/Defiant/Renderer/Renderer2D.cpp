@@ -10,8 +10,8 @@ namespace Defiant {
 
 	struct Renderer2DStorage {
 		Ref<VertexArray> QuadVertexArray;
-		Ref<Shader> FlatColorShader;
 		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
 	};
 
 	static Renderer2DStorage* s_Data;
@@ -48,8 +48,10 @@ namespace Defiant {
 		sqIB = IndexBuffer::Create(indicesSquare, sizeof(indicesSquare) / sizeof(uint32_t));
 		s_Data->QuadVertexArray->SetIndexBuffer(sqIB);
 
+		s_Data->WhiteTexture = Texture2D::Create(1, 1);
+		uint32_t whiteTextureData = 0xFFFFFFFF;
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
 
-		s_Data->FlatColorShader = Shader::Create("assets/shaders/FlatColor.glsl");
 		s_Data->TextureShader = Shader::Create("assets/shaders/Texture.glsl");
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetInt("u_Texture", 0);
@@ -60,8 +62,6 @@ namespace Defiant {
 	}
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera) {
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 	}
@@ -75,10 +75,13 @@ namespace Defiant {
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetFloat4("u_Color", color);
+		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetFloat4("u_Color", color);
+		//bind white texture
+		s_Data->WhiteTexture->Bind();
+
 		glm::mat4 transform = glm::translate(glm::mat4(1.0), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_Data->FlatColorShader->SetMat4("u_Transform", transform);
+		s_Data->TextureShader->SetMat4("u_Transform", transform);
 		s_Data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
 	}
@@ -88,9 +91,35 @@ namespace Defiant {
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture) {
+		DrawQuad(position, size, texture, glm::vec2(1.0f), glm::vec4(1.0f));
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, const glm::vec2& tile) {
+		DrawQuad({ position.x, position.y, 0.0f }, size, texture, tile);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, const glm::vec2& tile) {
+		DrawQuad(position, size, texture, tile, glm::vec4(1.0f));
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, const glm::vec4& tint) {
+		DrawQuad({ position.x, position.y, 0.0f }, size, texture, tint);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, const glm::vec4& tint) {
+		DrawQuad(position, size, texture, glm::vec2(1.0f), tint);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, const glm::vec2& tile, const glm::vec4& tint) {
+		DrawQuad({ position.x, position.y, 0.0f }, size, texture, tile, tint);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, const glm::vec2& tile, const glm::vec4& tint) {
 		s_Data->TextureShader->Bind();
 		glm::mat4 transform = glm::translate(glm::mat4(1.0), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 		s_Data->TextureShader->SetMat4("u_Transform", transform);
+		s_Data->TextureShader->SetFloat4("u_Color", tint);
+		s_Data->TextureShader->SetFloat2("u_Tile", tile);
 
 		texture->Bind();
 

@@ -28,7 +28,7 @@ void Sandbox2D::OnUpdate(Defiant::TimeStep ts) {
 	
 	Defiant::Renderer2D::DrawQuad({ -1, 0 }, { .8f, .8f }, {1, 0, 0, 1});
 	Defiant::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
-	Defiant::Renderer2D::DrawQuad({ 0.2f, 0.5f, -0.1f }, { 10.0f, 10.0f }, m_Texture);
+	Defiant::Renderer2D::DrawQuad({ 0.2f, 0.5f, -0.1f }, { 10.0f, 10.0f }, m_Texture, { 10, 10 });
 
 	Defiant::Renderer2D::EndScene();
 }

@@ -188,6 +188,10 @@ namespace Defiant {
 		UploadUniformFloat3(name, value);
 	}
 
+	void OpenGLShader::SetFloat2(const std::string& name, const glm::vec2& value) {
+		UploadUniformFloat2(name, value);
+	}
+
 	void OpenGLShader::SetInt(const std::string& name, int value) {
 		UploadUniformInt(name, value);
 	}
