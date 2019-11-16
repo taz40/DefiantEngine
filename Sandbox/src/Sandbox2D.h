@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Defiant.h"
+#include "CameraController.h"
 
 class Sandbox2D : public Defiant::Layer {
 public:
@@ -15,7 +16,7 @@ public:
 	virtual void OnEvent(Defiant::Event& e) override;
 
 private:
-	Defiant::OrthographicCameraController m_CameraController;
+	CameraController m_CameraController;
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 	Defiant::Ref<Defiant::Texture2D> m_Texture;
 	Defiant::Ref<Defiant::Texture2D> m_TextureCherno;

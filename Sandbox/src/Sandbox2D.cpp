@@ -110,6 +110,9 @@ void Sandbox2D::OnEvent(Defiant::Event& e) {
 			m_Sound->Play();
 		}else if (ev.GetKeyCode() == DE_KEY_2) {
 			m_Sound->Stop();
+		}else if (ev.GetKeyCode() == DE_KEY_3) {
+			m_Sound->Stop();
+			m_Sound->Play(true);
 		}
 	}
 }
