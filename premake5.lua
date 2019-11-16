@@ -16,6 +16,7 @@ IncludeDir["glad"] = "DefiantEngine/vendor/glad/include"
 IncludeDir["imgui"] = "DefiantEngine/vendor/imgui"
 IncludeDir["glm"] = "DefiantEngine/vendor/glm"
 IncludeDir["stb_image"] = "DefiantEngine/vendor/stb_image"
+IncludeDir["irrKlang"] = "DefiantEngine/vendor/irrKlang/include"
 
 
 include "DefiantEngine/vendor/GLFW"
@@ -55,14 +56,20 @@ project "DefiantEngine"
 		"%{IncludeDir.glad}",
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.irrKlang}"
+	}
+
+	libdirs {
+		"DefiantEngine/vendor/irrKlang/lib/Winx64-visualstudio"
 	}
 
 	links{
 		"GLFW",
 		"glad",
 		"ImGui",
-		"opengl32.lib"
+		"opengl32.lib",
+		"irrKlang.lib"
 	}
 
 	filter "system:windows" 
@@ -109,7 +116,8 @@ project "Sandbox"
 		"DefiantEngine/vendor/spdlog/include",
 		"DefiantEngine/src",
 		"DefiantEngine/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.irrKlang}"
 	}
 	
 	links {

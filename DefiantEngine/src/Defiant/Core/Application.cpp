@@ -5,6 +5,7 @@
 #include "Defiant/Core/Log.h"
 #include "Input.h"
 #include "Defiant/Renderer/Renderer.h"
+#include "Defiant/Audio/AudioContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -21,6 +22,7 @@ namespace Defiant {
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
+		AudioContext::Init();
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);

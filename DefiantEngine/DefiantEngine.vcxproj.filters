@@ -123,6 +123,9 @@
     <ClInclude Include="src\Defiant\Renderer\Renderer.h">
       <Filter>src\Defiant\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Renderer\Renderer2D.h">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Defiant\Renderer\RendererAPI.h">
       <Filter>src\Defiant\Renderer</Filter>
     </ClInclude>
@@ -1257,6 +1260,8 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Defiant\Audio\AudioContext.h" />
+    <ClInclude Include="src\Defiant\Audio\SoundClip.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Defiant\Core\Application.cpp">
@@ -1290,6 +1295,9 @@
       <Filter>src\Defiant\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Renderer\Renderer.cpp">
+      <Filter>src\Defiant\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Defiant\Renderer\Renderer2D.cpp">
       <Filter>src\Defiant\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Defiant\Renderer\RendererAPI.cpp">
@@ -1334,5 +1342,7 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Defiant\Audio\AudioContext.cpp" />
+    <ClCompile Include="src\Defiant\Audio\SoundClip.cpp" />
   </ItemGroup>
 </Project>

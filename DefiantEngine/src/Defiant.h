@@ -25,4 +25,6 @@
 #include <Defiant/Renderer/Shader.h>
 #include <Defiant/Renderer/Texture.h>
 
+#include <Defiant/Audio/SoundClip.h>
+
 #include <Defiant/Renderer/Camera.h>

@@ -2,6 +2,8 @@
 #include "imgui/imgui.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <chrono>
+#include <irrKlang.h>
+
 
 template<typename Fn>
 class Timer {
@@ -40,9 +42,13 @@ Sandbox2D::Sandbox2D()
 
 }
 
+using namespace irrklang;
+
 void Sandbox2D::OnAttach() {
 	m_Texture = Defiant::Texture2D::Create("assets/textures/checkerboard.png");
 	m_TextureCherno = Defiant::Texture2D::Create("assets/textures/ChernoLogo.png");
+	m_Sound = std::make_shared<Defiant::SoundClip>("assets/sounds/game jam.wav");
+	
 }
 
 void Sandbox2D::OnDetach() {
@@ -58,6 +64,7 @@ void Sandbox2D::OnUpdate(Defiant::TimeStep ts) {
 		PROFILE_SCOPE("CameraController::OnUpdate");
 		m_CameraController.OnUpdate(ts);
 	}
+
 	//Render
 	{
 		PROFILE_SCOPE("Renderer Prep");
@@ -96,4 +103,13 @@ void Sandbox2D::OnImGuiRender() {
 
 void Sandbox2D::OnEvent(Defiant::Event& e) {
 	m_CameraController.OnEvent(e);
+	if (e.GetEventType() == Defiant::EventType::KeyPressed) {
+		Defiant::KeyPressedEvent& ev = (Defiant::KeyPressedEvent&)e;
+		if (ev.GetKeyCode() == DE_KEY_1) {
+			m_Sound->Stop();
+			m_Sound->Play();
+		}else if (ev.GetKeyCode() == DE_KEY_2) {
+			m_Sound->Stop();
+		}
+	}
 }

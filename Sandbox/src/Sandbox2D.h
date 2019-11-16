@@ -19,6 +19,7 @@ private:
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
 	Defiant::Ref<Defiant::Texture2D> m_Texture;
 	Defiant::Ref<Defiant::Texture2D> m_TextureCherno;
+	Defiant::Ref<Defiant::SoundClip> m_Sound;
 
 	struct ProfileResult {
 		const char* Name;
